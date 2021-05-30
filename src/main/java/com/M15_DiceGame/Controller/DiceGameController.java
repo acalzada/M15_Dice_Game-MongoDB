@@ -63,17 +63,17 @@ public class DiceGameController {
 	}
 	
 		
-	/*
-	 
+ 
 	@DeleteMapping({"/players/{id}/games","/players/{id}/games/"})
 	public UserDTO deleteAllUserGames(@PathVariable(name="id") Long id) {
 		UserDTO user = diceGameServiceImpl.findById(id);
 		user.deleteAllGames();
+		diceGameServiceImpl.deleteUserGames(user);
 		diceGameServiceImpl.updateUser(user);
 		return user;
 	}
 	
-	*/
+
 	@GetMapping({"/players/","/players"})
 	public List<UserDTO> getAllUsersWithGameStatistics() {
 		return diceGameServiceImpl.getAllUsers();

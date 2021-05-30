@@ -20,7 +20,7 @@ public class Game {
 	private Long gameId;
 	
 	@Field(name="user_id")
-	private Long user_id;
+	private Long userId;
 	
 	@Field()
 	@NonNull
@@ -51,7 +51,7 @@ public class Game {
 	}
 	
 	public Game(Long id, int dice1_val, int dice2_val) {
-		this.user_id = id;
+		this.userId = id;
 		this.dice1_Value = dice1_val;
 		this.dice2_Value = dice2_val;
 		
@@ -133,6 +133,6 @@ public class Game {
 	}
 		
 	public String toString() {
-		return "Game ['Id= " + this.getId() + ", UId= " + this.user_id +", D1= " + this.dice1_Value + ", D2= " + this.dice2_Value + ", Result= " + this.game_won + "']";
+		return "Game ['Id= " + this.getId() + ", UId= " + this.userId +", D1= " + this.dice1_Value + ", D2= " + this.dice2_Value + ", Result= " + this.game_won + "']";
 	}
 }

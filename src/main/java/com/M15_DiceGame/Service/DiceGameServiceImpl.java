@@ -114,4 +114,7 @@ public class DiceGameServiceImpl implements DiceGameService{
 		return accumMeanScore/numberOfUsers;
 	}
 
+	public void deleteUserGames(UserDTO user) {
+		gameDAO.deleteByUserId(user.getId());
+	}
 }
