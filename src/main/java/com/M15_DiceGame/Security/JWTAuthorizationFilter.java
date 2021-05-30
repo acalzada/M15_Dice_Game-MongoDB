@@ -40,7 +40,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 			
 			chain.doFilter(request, response);
 		} catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e) {
-			System.out.println("ENTRO AL CATCH!!!!!");
+			System.out.println("===========\n ENTRO AL CATCH!!!!! \n==============");
 			System.out.println(e.toString());
 			System.out.println(e.getCause());
 			System.out.println(e.getMessage());
@@ -75,7 +75,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		String authenticationHeader = request.getHeader(HEADER);
 		if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX)) 
 			return false;
-		System.out.println("HAY TOKEN!!!!");
 		return true;
 	}
 }
