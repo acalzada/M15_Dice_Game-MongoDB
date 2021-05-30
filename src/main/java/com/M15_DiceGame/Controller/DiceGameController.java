@@ -26,33 +26,45 @@ public class DiceGameController {
 	
 	@PostMapping({"/players","/players/"})
 	public UserDTO createNewUser(@RequestBody UserDTO user) {
+		System.out.println("======================================");
+		System.out.println(user.toString());
+		System.out.println("======================================");
 		return diceGameServiceImpl.addNewUser(user);
 	}	
 	
 	
 	@PutMapping({"/players","/players/"})
 	public UserDTO changeUserName(@RequestBody UserDTO userHttp) {
+		
 		UserDTO user = diceGameServiceImpl.findById(userHttp.getId());
+		System.out.println("======================================");
+		System.out.println(user.toString());
+		System.out.println("======================================");
 		user.setName(userHttp.getName());
 		return diceGameServiceImpl.updateUser(user);
 	}
 	
 	
+	
 
-	@PostMapping({"/players/{id}/games","/players/{id}/games/"})
+	@PostMapping({"/players/{id}/games", "/players/{id}/games/"})
 	public Game throwDices(@PathVariable(name="id") Long id) {
-		UserDTO user = diceGameServiceImpl.findById(id);
-		Game game = user.play();
+		UserDTO userDTO = diceGameServiceImpl.findById(id);
+		Game game = userDTO.play();
+		System.out.println("   ==>>  CONTROLLER  ThrowDices");
+		System.out.println(game.toString());
 		diceGameServiceImpl.saveNewGame(game);
-		diceGameServiceImpl.updateUser(user);
+		diceGameServiceImpl.updateUser(userDTO);
 		// In order to have the new Game created together with its game_id,
 		// We retrieve the list of all User's games from database and We'll return only the last one.
-		List<Game> gamesList = user.getGames(); 
+		List<Game> gamesList = userDTO.getGames(); 
 		return gamesList.get(gamesList.size()-1);  // Used to get the last User's Game  
 		
 	}
 	
 		
+	/*
+	 
 	@DeleteMapping({"/players/{id}/games","/players/{id}/games/"})
 	public UserDTO deleteAllUserGames(@PathVariable(name="id") Long id) {
 		UserDTO user = diceGameServiceImpl.findById(id);
@@ -61,13 +73,13 @@ public class DiceGameController {
 		return user;
 	}
 	
-	
+	*/
 	@GetMapping({"/players/","/players"})
 	public List<UserDTO> getAllUsersWithGameStatistics() {
 		return diceGameServiceImpl.getAllUsers();
 	}
 	
-
+/*
 	@GetMapping({"/players/{id}/games","/players/{id}/games/"})
 	public List<Game> getUserGames(@PathVariable(name="id") Long id) {
 		UserDTO user = diceGameServiceImpl.findById(id);
@@ -94,7 +106,7 @@ public class DiceGameController {
 	public List<UserDTO> getUserWithHighestScore() {
 		return diceGameServiceImpl.getFirstRanking();
 	}
-	
+*/	
 	
 }
 

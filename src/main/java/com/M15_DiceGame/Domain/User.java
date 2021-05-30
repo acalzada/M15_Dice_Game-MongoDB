@@ -3,8 +3,10 @@ package com.M15_DiceGame.Domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -14,21 +16,23 @@ import com.mongodb.lang.NonNull;
 @Document(collection="users")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
-
+	
 	@Id
 	@Field(name="user_id")
-	protected Long id;
+	protected Long userId;
 	
 	@Field()
 	protected String name;
 	
 	@Field()
+	@CreatedDate
 	protected LocalDateTime registration_date;
 	
 	@Field(name="meanScore")
 	@NonNull
 	protected float meanScore;
 	
+	@DBRef
 	protected List <Game> games;
 	
 	// Constructors
@@ -36,13 +40,17 @@ public class User {
 	public User() {
 	}
 	
+	public User(Long id, String name) {
+		this.userId = id;
+		this.name = name;
+	}
 	
 	public User(String name) {
 		this.name = name;
 	}
 
-	public User(Long id, String name, float meanScore) {
-		this.id = id;
+	public User(Long user_id, String name, float meanScore) {
+		this.userId = user_id;
 		this.name = name;
 		this.meanScore = meanScore;
 	}
@@ -51,8 +59,8 @@ public class User {
 	// Getters & Setters
 	
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long user_id) {
+		this.userId = user_id;
 	}
 	
 	/**
@@ -60,7 +68,7 @@ public class User {
 	 * @return the User's id
 	 */
 	public Long getId() {
-		return id;
+		return userId;
 	}
 
 	/**
@@ -117,6 +125,12 @@ public class User {
 	 */
 	public void setMeanScore(float meanScore) {
 		this.meanScore = meanScore;
+	}
+	
+	public String toString() {
+		String out = "User [ userId:" + this.getId() + ", name:'" + this.getName() + "', meanScore:" + this.getMeanScore() + "]";
+		out = "---------------------------------\n" + out + "\n---------------------------------\n"; 
+		return out;
 	}
 	
 }

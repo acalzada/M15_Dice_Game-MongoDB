@@ -1,10 +1,15 @@
 package com.M15_DiceGame.Domain;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.mongodb.lang.NonNull;
 
 @Document(collection="games")
@@ -12,7 +17,7 @@ public class Game {
 	
 	@Id
 	@Field(name="game_id")
-	private Long id;
+	private Long gameId;
 	
 	@Field(name="user_id")
 	private Long user_id;
@@ -29,10 +34,15 @@ public class Game {
 	@NonNull
 	private boolean game_won;
 	
+	@Transient
 	int winningGameValue = 7;  // Value to get adding the two dices in order to win the game.
 	
+	/*
+	@DBRef
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id") //retorna només id
+    @JsonIdentityReference(alwaysAsId = true) //retorna només id
 	private User user;
-
+	 */
 	
 	// Constructors
 	
@@ -56,14 +66,14 @@ public class Game {
 	 * @return the id
 	 */
 	public Long getId() {
-		return id;
+		return gameId;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
-		this.id = id;
+		this.gameId = id;
 	}
 
 	/**
@@ -123,6 +133,6 @@ public class Game {
 	}
 		
 	public String toString() {
-		return "Game ['D1= " + this.dice1_Value + ", D2= " + this.dice2_Value + ", Result= " + this.game_won + "']";
+		return "Game ['Id= " + this.getId() + ", UId= " + this.user_id +", D1= " + this.dice1_Value + ", D2= " + this.dice2_Value + ", Result= " + this.game_won + "']";
 	}
 }

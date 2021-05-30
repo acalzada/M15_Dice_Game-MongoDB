@@ -22,17 +22,43 @@ public class DiceGameServiceImpl implements DiceGameService{
 	GameDAO gameDAO;
 	
 	
+	
 	@Override
 	public UserDTO addNewUser(UserDTO userDTO) {
-		User user = new User(userDTO.getName());
+		User user = new User(userDTO.getId(), userDTO.getName());
+		Long id = getMaxUserId();
+		if (id == null)
+			id = (long) 0;
+		user.setId(id+1);
 		user = userDAO.save(user);
 		return new UserDTO(user);
 	}
 
+	public Long getMaxUserId() {
+		User user = userDAO.findTopByOrderByUserIdDesc();
+		if (user == null)
+			return null;
+		return user.getId();
+	};
+	
+	@Override
+	public Game saveNewGame(Game game) {
+		Long gameId = getMaxGameId();
+		game.setId(gameId+1);
+		return gameDAO.save(game);
+	}
+	
+	
+	public Long getMaxGameId() {
+		Game game = gameDAO.findTopByOrderByGameIdDesc();
+		if (game == null)
+			return 0L;
+		return game.getId();
+	};
 	
 	@Override
 	public UserDTO updateUser(UserDTO userDTO) {
-		User user = userDAO.findById(userDTO.getId()).get();
+		User user = userDAO.findByUserId(userDTO.getId());
 		user.setName(userDTO.getName());
 		user.setMeanScore(userDTO.getMeanScore());
 		user.setGames(userDTO.getGames());
@@ -40,18 +66,15 @@ public class DiceGameServiceImpl implements DiceGameService{
 		return new UserDTO(user);
 	}
 
-
-	@Override
-	public Game saveNewGame(Game game) {
-		return gameDAO.save(game);
-	}
 	
 	@Override
 	public UserDTO findById(Long id) {
-		User user = userDAO.findById(id).get();
+		User user = userDAO.findByUserId(id);
 		return new UserDTO(user);
 	}
-
+	
+	
+	
 	
 	@Override
 	public List<UserDTO> getAllUsers() {
@@ -62,6 +85,7 @@ public class DiceGameServiceImpl implements DiceGameService{
 		return usersDTO;
 	}
 	
+	/*
 	public List<UserDTO> getLastRanking() {
 		float min_mean_score = userDAO.getMinMeanScore();
 		List<UserDTO> usersDTO = new ArrayList<UserDTO>();
@@ -81,5 +105,5 @@ public class DiceGameServiceImpl implements DiceGameService{
 	public float getAverageWinningScore() {
 		return userDAO.getAverageMeanScore();
 	}
-	
+	*/
 }
