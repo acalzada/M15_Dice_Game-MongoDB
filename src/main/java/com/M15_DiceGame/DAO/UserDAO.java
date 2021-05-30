@@ -20,14 +20,12 @@ public interface UserDAO extends MongoRepository<User, Long>{
 	
 	/*
 	public float getAverageMeanScore();
-	
-	public float getMinMeanScore();
-	
+	*/
+
+	public User findTopByOrderByMeanScore();
+	/*
 	public float getMaxMeanScore();
-	
+	*/
 	public List<User> findByMeanScore(float meanScore);
-	
-	
-	 */
 	
 }

@@ -79,7 +79,7 @@ public class DiceGameController {
 		return diceGameServiceImpl.getAllUsers();
 	}
 	
-/*
+
 	@GetMapping({"/players/{id}/games","/players/{id}/games/"})
 	public List<Game> getUserGames(@PathVariable(name="id") Long id) {
 		UserDTO user = diceGameServiceImpl.findById(id);
@@ -87,12 +87,12 @@ public class DiceGameController {
 	}
 
 	
-	
+	/*
 	@GetMapping({"/players/ranking","/players/ranking/"})
 	public float getAverageGameWinningStatistic() {
 		return diceGameServiceImpl.getAverageWinningScore();
 	}
-	
+	*/
 	
 	@GetMapping({"/players/ranking/loser","/players/ranking/loser/"})
 	public List<UserDTO> getUserWithLowestScore() {
@@ -101,7 +101,7 @@ public class DiceGameController {
 	
 	
 	
-	
+	/*
 	@GetMapping("/players/ranking/winner")
 	public List<UserDTO> getUserWithHighestScore() {
 		return diceGameServiceImpl.getFirstRanking();

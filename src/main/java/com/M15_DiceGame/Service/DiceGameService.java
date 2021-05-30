@@ -26,9 +26,9 @@ public interface DiceGameService {
 	
 	/*
 	public float getAverageWinningScore();
-	
+	*/
 	public List<UserDTO> getLastRanking();
-	
+	/*
 	public List<UserDTO> getFirstRanking();
 	*/
 }
