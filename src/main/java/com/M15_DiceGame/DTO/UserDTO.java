@@ -47,22 +47,13 @@ public class UserDTO extends User {
 		int dice2 = (int) Math.floor(Math.random()*(max-min+1)+min);
 		
 		Game game = new Game(this.getId(), dice1, dice2);
-
-		System.out.println("=========   Dins el PLAY DTO     ============");
-		System.out.println("=========   GAME obtingut:");
-		System.out.println(game.toString());
-		
+	
 		// Add new game to the user profile
-		System.out.println("ABANS AFEGIR GAME a GAMES");
-		this.games.forEach((g)->System.out.println(g.toString()));
 		this.games.add(game);
-		System.out.println("DESPRES AFEGIR GAME a GAMES");
-		this.games.forEach((g)->System.out.println(g.toString()));
 		// Compute the new total Score based on the historic Score and the new Game result.
 		float numberOfGames = this.games.size();
 		float gameResult = game.isGame_won() ? 1.0f : 0.0f;  // Used to convert the Boolean value to float to be able to compute the next computations
 		float newMeanScore = this.getMeanScore()*((numberOfGames-1)/numberOfGames) + (gameResult/numberOfGames*100);
-		System.out.println("meanScore= " + newMeanScore);
 		// Update User's new mean Score
 		this.setMeanScore(newMeanScore);
 		

@@ -26,9 +26,6 @@ public class DiceGameController {
 	
 	@PostMapping({"/players","/players/"})
 	public UserDTO createNewUser(@RequestBody UserDTO user) {
-		System.out.println("======================================");
-		System.out.println(user.toString());
-		System.out.println("======================================");
 		return diceGameServiceImpl.addNewUser(user);
 	}	
 	
@@ -37,9 +34,6 @@ public class DiceGameController {
 	public UserDTO changeUserName(@RequestBody UserDTO userHttp) {
 		
 		UserDTO user = diceGameServiceImpl.findById(userHttp.getId());
-		System.out.println("======================================");
-		System.out.println(user.toString());
-		System.out.println("======================================");
 		user.setName(userHttp.getName());
 		return diceGameServiceImpl.updateUser(user);
 	}
@@ -51,8 +45,6 @@ public class DiceGameController {
 	public Game throwDices(@PathVariable(name="id") Long id) {
 		UserDTO userDTO = diceGameServiceImpl.findById(id);
 		Game game = userDTO.play();
-		System.out.println("   ==>>  CONTROLLER  ThrowDices");
-		System.out.println(game.toString());
 		diceGameServiceImpl.saveNewGame(game);
 		diceGameServiceImpl.updateUser(userDTO);
 		// In order to have the new Game created together with its game_id,
