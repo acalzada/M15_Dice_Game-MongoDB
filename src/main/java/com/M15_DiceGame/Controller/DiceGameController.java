@@ -87,12 +87,12 @@ public class DiceGameController {
 	}
 
 	
-	/*
+
 	@GetMapping({"/players/ranking","/players/ranking/"})
 	public float getAverageGameWinningStatistic() {
 		return diceGameServiceImpl.getAverageWinningScore();
 	}
-	*/
+	
 	
 	@GetMapping({"/players/ranking/loser","/players/ranking/loser/"})
 	public List<UserDTO> getUserWithLowestScore() {

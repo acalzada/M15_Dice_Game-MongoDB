@@ -103,9 +103,15 @@ public class DiceGameServiceImpl implements DiceGameService{
 		return usersDTO;
 	}
 	 
-	/* 
+
 	public float getAverageWinningScore() {
-		return userDAO.getAverageMeanScore();
+		List<User> userList = userDAO.findAll();
+		float numberOfUsers = userList.size();
+		float accumMeanScore = 0.0f;
+		for (User user : userList) {
+			accumMeanScore += user.getMeanScore();
+		}
+		return accumMeanScore/numberOfUsers;
 	}
-	*/
+
 }
