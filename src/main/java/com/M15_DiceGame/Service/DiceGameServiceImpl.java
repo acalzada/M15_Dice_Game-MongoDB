@@ -93,16 +93,17 @@ public class DiceGameServiceImpl implements DiceGameService{
 		userDAO.findByMeanScore(min_mean_score).forEach((user)-> usersDTO.add(new UserDTO(user)));
 		return usersDTO;
 	}
-	/*
+	
 	@Override
 	public List<UserDTO> getFirstRanking() {
-		float max_mean_score = userDAO.getMaxMeanScore();
+		User userMaxScore = userDAO.findTopByOrderByMeanScoreDesc();
+		float max_mean_score = userMaxScore.getMeanScore();
 		List<UserDTO> usersDTO = new ArrayList<UserDTO>();
 		userDAO.findByMeanScore(max_mean_score).forEach((user)->usersDTO.add(new UserDTO(user)));
 		return usersDTO;
 	}
 	 
-	 
+	/* 
 	public float getAverageWinningScore() {
 		return userDAO.getAverageMeanScore();
 	}

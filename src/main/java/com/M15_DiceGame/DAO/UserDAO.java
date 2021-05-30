@@ -23,9 +23,9 @@ public interface UserDAO extends MongoRepository<User, Long>{
 	*/
 
 	public User findTopByOrderByMeanScore();
-	/*
-	public float getMaxMeanScore();
-	*/
+	
+	public User findTopByOrderByMeanScoreDesc();
+	
 	public List<User> findByMeanScore(float meanScore);
 	
 }

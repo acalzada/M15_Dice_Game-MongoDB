@@ -101,12 +101,12 @@ public class DiceGameController {
 	
 	
 	
-	/*
+	
 	@GetMapping("/players/ranking/winner")
 	public List<UserDTO> getUserWithHighestScore() {
 		return diceGameServiceImpl.getFirstRanking();
 	}
-*/	
+
 	
 }
 
