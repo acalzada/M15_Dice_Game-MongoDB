@@ -1,0 +1,69 @@
+[{
+  "user_id":1,
+  "name": "Angel",
+  "registration_date": "2021-05-23 18:06:14",
+  "meanScore": 0,
+  "games": [
+    {
+      "dice1_Value": 1,
+      "dice2_Value": 1,
+      "game_won": false
+    },
+    {
+      "dice1_Value": 1,
+      "dice2_Value": 1,
+      "game_won": false
+    }
+  ]
+},{
+  "user_id":2,
+  "name": "Albert",
+  "registration_date": "2021-05-24 18:06:14",
+  "meanScore": 50,
+  "games": [
+    {
+      "dice1_Value": 1,
+      "dice2_Value": 1,
+      "game_won": false
+    },
+    {
+      "dice1_Value": 3,
+      "dice2_Value": 4,
+      "game_won": true
+    }
+  ]
+},{
+  "user_id":3,
+  "name": "Llui",
+  "registration_date": "2021-05-25 18:06:14",
+  "meanScore": 100,
+  "games": [
+    {
+      "dice1_Value": 2,
+      "dice2_Value": 5,
+      "game_won": true
+    }
+  ]
+},{
+  "user_id":4,
+  "name": "Berna",
+  "registration_date": "2021-05-25 18:06:14",
+  "meanScore": 0,
+  "games": [
+    {
+      "dice1_Value": 1,
+      "dice2_Value": 5,
+      "game_won": false
+    },
+    {
+      "dice1_Value": 2,
+      "dice2_Value": 2,
+      "game_won": false
+    },
+    {
+      "dice1_Value": 5,
+      "dice2_Value": 3,
+      "game_won": false
+    }
+  ]
+}]
