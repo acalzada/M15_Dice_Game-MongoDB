@@ -68,14 +68,5 @@ public class UserDTO extends User {
 		this.meanScore = 0;
 	}
 	
-	/**
-	 * Set the registration time to the dTO. The database already sets timeStamp for new users.
-	 * @param timeStamp
-	 */
-	protected void setRegistration_date(LocalDateTime timeStamp) {
-		this.registration_date = timeStamp;
-	}
-	
-	
 	
 }

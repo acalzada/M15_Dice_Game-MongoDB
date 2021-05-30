@@ -1,5 +1,6 @@
 package com.M15_DiceGame.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class DiceGameServiceImpl implements DiceGameService{
 		if (id == null)
 			id = (long) 0;
 		user.setId(id+1);
+		user.setRegistration_date(LocalDateTime.now());
 		user = userDAO.save(user);
 		return new UserDTO(user);
 	}

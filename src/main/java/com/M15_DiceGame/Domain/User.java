@@ -88,6 +88,10 @@ public class User {
 	}
 
 
+	public void setRegistration_date(LocalDateTime registration_date) {
+		this.registration_date = registration_date;
+	}
+	
 	/**
 	 * Get the date the User registered into the system
 	 * @return the registration_date
